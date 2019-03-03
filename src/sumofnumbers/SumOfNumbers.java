@@ -1,17 +1,12 @@
 package sumofnumbers;
 
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class SumOfNumbers {
     
     private static final int NUMBER = 12345;
-    private static Logger LOGGER = null;
-    private static FileHandler handler = null;
-
+    private static Logger logger = Logger.getLogger(SumOfNumbers.class.getName());
+    
     public static void main(String[] args) {
         
         //First method
@@ -20,20 +15,8 @@ public class SumOfNumbers {
         //Second method
         int sum2 = secondMethod(NUMBER);        
         
-        try {
-            handler = new FileHandler("C:/log/SumOfNumbers.log", false);            
-        } catch (IOException | SecurityException ex) {
-            Logger.getLogger(SumOfNumbers.class.getName()).log(Level.SEVERE, ex.toString(), ex);
-        } 
-        handler.setFormatter(new SimpleFormatter());
-        LOGGER = Logger.getLogger(SumOfNumbers.class.getName());
-        LOGGER.addHandler(handler);
-        LOGGER.setLevel(Level.INFO);
-        LOGGER.setUseParentHandlers(false);
-        
-        //What is better?
-        LOGGER.info("First method sum = " + sum1); 
-        LOGGER.log(Level.INFO, "Second method sum = {0}", sum2);
+        logger.info("First method sum = " + sum1); 
+        logger.info("Second method sum = " + sum2);
     } 
     
     private static int firstMethod(int n){
